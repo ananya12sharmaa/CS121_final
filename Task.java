@@ -9,12 +9,12 @@ public class Task
     private String category;  //maybe it can be school work, personal project, fun etc
     private String date;  // format would be our usual: MM-DD-YYYY
     private String time;  // format for this will again be our usual HH:MM
-    private String dayOfWeek;  //just our basic string type day of the week
+    private DayOfWeek dayOfWeek;  //just our basic string type day of the week
     private int priority;  //used to determine the urgency of the task, that will be used in priorty: 1 = high, 5 = low
-    private String mood;  // again our any String type
+    private Mood mood;  // again our any String type
 
     //Constructor for setting our objects with their initial values
-    public Task(String description, String category, String date, String time, String dayOfWeek,  int priority, String mood) 
+    public Task(String description, String category, String date, String time, DayOfWeek dayOfWeek,  int priority, Mood mood) 
     {
 	//this keyword is used to refer currect object in this class
         this.description = description;
@@ -24,6 +24,7 @@ public class Task
 	this.dayOfWeek = dayOfWeek;
         this.priority = priority;
         this.mood = mood;
+	//this.mood = Mood.valueOf(mood.toUpperCase());
     }//constructor ends
 
     //getters
@@ -43,7 +44,7 @@ public class Task
     {
 	    return time;
     }
-    public String getDayOfWeek()
+    public DayOfWeek getDayOfWeek()
     {
 	    return dayOfWeek;
     }
@@ -51,7 +52,7 @@ public class Task
     {
 	    return priority;
     }
-    public String getMood()
+    public Mood getMood()
     {
 	    return mood;
     }
@@ -73,7 +74,7 @@ public class Task
     {
 	    this.time = time;
     }
-    public void setDayOfWeek(String dayOfWeek) 
+    public void setDayOfWeek(DayOfWeek dayOfWeek) 
     {
 	    this.dayOfWeek = dayOfWeek;
     }
@@ -82,7 +83,7 @@ public class Task
     {
 	    this.priority = priority;
     }
-    public void setMood(String mood) 
+    public void setMood(Mood mood) 
     {
 	    this.mood = mood;
     }
@@ -99,4 +100,3 @@ public class Task
     }//method ends
 
 }//class ends
-

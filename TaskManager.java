@@ -94,6 +94,27 @@ public class TaskManager
 		    System.out.println("No tasks found with priority " + level + ".");
             }
      }
+    public void getByMood(Mood mood)
+    {
+	    boolean found = false;
+	    for(int i = 0; i < tasks.size(); i++)
+	    {
+		    if(tasks.get(i).getMood() == mood)
+		    {
+			    if(!found)
+			    {
+				    System.out.println("Tasks with mood " + mood + ":");
+				    found = true;
+			    }
+			    System.out.println("Task #" + (i + 1));
+			    tasks.get(i).displayTask();
+		    }
+            }
+	    if(!found)
+	    {
+		    System.out.println("No tasks found with mood " + mood + ".");
+	    }
+    }
 
 
     public ArrayList<Task> getTasks() 
