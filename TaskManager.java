@@ -11,11 +11,15 @@ public class TaskManager
 
     //private access modifier, so that it encapsulates the tasks only here and can only be accessed by the above class
     private ArrayList<Task> tasks;
-
-    //constructor to intialise the empty list
-    public TaskManager()
+    
+    public TaskManager() 
     {
-        tasks = new ArrayList<>();
+	    tasks = new ArrayList<>();
+    }
+
+    public TaskManager(ArrayList<Task> tasks) 
+    {
+    this.tasks = tasks;
     }
 
     //to add a new task to our list

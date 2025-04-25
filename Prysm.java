@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 public class Prysm 
 {
-    private static TaskManager taskManager = new TaskManager();
+   // private static TaskManager taskManager = new TaskManager();
+    private static TaskManager taskManager = new TaskManager(TaskDataManager.loadTasks());
     private static JournalManager journalManager = new JournalManager();
     private static CalendarView calendarView = new CalendarView();
 
@@ -76,9 +77,11 @@ public class Prysm
         System.out.print("Enter mood (e.g., FOCUSED, TIRED, EXCITED): ");
         Mood mood = Mood.valueOf(scanner.nextLine().toUpperCase());
 
-        Task newTask = new Task(description, category, date, time, day, priority, mood);
-        taskManager.addTask(newTask);
-        System.out.println("✅ Task added!");
+    	Task newTask = new Task(description, category, date, time, day, priority, mood);
+	taskManager.addTask(newTask);
+	TaskDataManager.saveTasks(taskManager.getTasks());  // 💾 autosave after adding
+	System.out.println("✅ Task added and saved!");
+
     }
 
     private static void addJournalEntry(Scanner scanner) 
