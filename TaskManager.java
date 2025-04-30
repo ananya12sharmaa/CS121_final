@@ -119,6 +119,19 @@ public class TaskManager
 		    System.out.println("No tasks found with mood " + mood + ".");
 	    }
     }
+    
+    public void deleteTask(int index) 
+    {
+	    if(index >= 0 && index < tasks.size()) 
+	    {
+		    tasks.remove(index);
+		    System.out.println("✅ Task deleted successfully.");
+	    }
+	    else 
+	    {
+		    System.out.println("❌ Invalid task number.");
+    	    }
+    }
 
 
     public ArrayList<Task> getTasks() 

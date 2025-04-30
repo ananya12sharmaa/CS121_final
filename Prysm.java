@@ -40,9 +40,9 @@ public class Prysm
 
     private static void printWelcome() 
     {
-        System.out.println("━━━━━━━━━━ ❖ 𝙋𝙍𝙔𝙎𝙈 ❖ ━━━━━━━━━━");
+        System.out.println("━━━━━━━━━━━━━━━━━━━━ ❖ 𝙋𝙍𝙔𝙎𝙈 ❖ ━━━━━━━━━━━━━━━━━━━━");
         System.out.println("A reflection-based task + journal system.");
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     }
 
     private static void printMenu() 

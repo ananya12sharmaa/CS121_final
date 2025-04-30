@@ -61,7 +61,8 @@ public class CalendarView
     		for(Task task : tasks)
 	       	{
         		String day = task.getDayOfWeek().toString();
-        		for (int i = 0; i < days.length; i++) 
+        		System.out.println("DEBUG: Task '" + task.getTitle() + "' is scheduled for " + day);
+			for (int i = 0; i < days.length; i++) 
 			{
             			if (days[i].equals(day)) 
 				{
