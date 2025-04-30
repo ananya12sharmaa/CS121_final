@@ -5,7 +5,8 @@ public class Task
 {//class starts
     //for encapsulation, the attributes are private
 	
-    private String description;  //to store name and/or a tiny description of the task in hand
+    private String title;//adding the main short title
+    private String description;  //optional tiny description of the task in hand
     private String category;  //maybe it can be school work, personal project, fun etc
     private String date;  // format would be our usual: MM-DD-YYYY
     private String time;  // format for this will again be our usual HH:MM
@@ -14,10 +15,11 @@ public class Task
     private Mood mood;  // again our any String type
 
     //Constructor for setting our objects with their initial values
-    public Task(String description, String category, String date, String time, DayOfWeek dayOfWeek,  int priority, Mood mood) 
+    public Task(String title, String description, String category, String date, String time, DayOfWeek dayOfWeek,  int priority, Mood mood) 
     {
 	//this keyword is used to refer currect object in this class
-        this.description = description;
+        this.title = title;
+	this.description = description;
         this.category = category;
         this.date = date;
         this.time = time;
@@ -28,6 +30,10 @@ public class Task
     }//constructor ends
 
     //getters
+    public String getTitle() 
+    {
+    return title;
+    }
     public String getDescription()
     {
 	    return description; 
@@ -58,6 +64,11 @@ public class Task
     }
 
     //setters for all attributes
+    
+    public void setTitle(String title)
+    {
+            this.title = title;
+    }
     public void setDescription(String description) 
     {
 	    this.description = description; 
@@ -91,9 +102,10 @@ public class Task
     //display method for a structured screen display
     public void displayTask() 
     {//method starts
-	    String estyle = "\n° ❀ ⋆ ｡ ˚ 𓇼  ⋆ 𓆉    𓆝𓆡  ˚ ｡ ⋆ 𓇼 ⋆ ｡ ˚ ❀ °\n";
+	    String estyle = "\n° ❀ ⋆ ｡ ˚ 𓇼  ⋆ 𓆉    𓆝  𓆡  ˚ ｡ ⋆ 𓇼 ⋆ ｡ ˚ ❀ °\n";
 	    System.out.println(estyle);
-	    System.out.println("📌 " + description + " (" + category + ")");
+	    System.out.println("📌 " + title + " (" + category + ")");
+	    System.out.println("🗒  " + description);
 	    System.out.println("🗓 " + dayOfWeek + ", " + date + " ⏰ " + time);
 	    System.out.println("🎯 Priority: " + priority + " | Mood: " + mood);
 	    System.out.println(estyle + "\n");

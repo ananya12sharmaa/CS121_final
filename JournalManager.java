@@ -10,7 +10,7 @@ public class JournalManager
 	//contructor to intitalise where the entries will be stored
 	public JournalManager()
 	{
-		entries = new ArrayList<>();
+		entries = JournalDataManager.readFromFile("journals.json");
 	}//contructor ends
 
 	//to write a new journal entry
@@ -18,6 +18,7 @@ public class JournalManager
 	{
 		JournalEntry newEntry = new JournalEntry(date, mood, note);
 		entries.add(newEntry);
+		JournalDataManager.writeToFile("journals.json", entries);
 		System.out.println("Journal entry added for " + date + ".");
 	}//method ended
 

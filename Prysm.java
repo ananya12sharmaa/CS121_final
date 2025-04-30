@@ -56,32 +56,65 @@ public class Prysm
         System.out.println("6. 🚪 Exit");
         System.out.print("Choose an option: ");
     }
-
-    private static void addTask(Scanner scanner) 
+    private static void addTask(Scanner scanner)
     {
-        System.out.print("Enter task description: ");
-        String description = scanner.nextLine();
-        System.out.print("Enter category (school, fun, personal): ");
-        String category = scanner.nextLine();
-        System.out.print("Enter date (MM-DD-YYYY): ");
-        String date = scanner.nextLine();
-        System.out.print("Enter time (HH:MM): ");
-        String time = scanner.nextLine();
+	    System.out.print("Enter task title: ");
+    	    String title = scanner.nextLine();
 
-        System.out.print("Enter day of week (e.g., MONDAY): ");
-        DayOfWeek day = DayOfWeek.valueOf(scanner.nextLine().toUpperCase());
+            System.out.print("Add a description? (yes/no): ");
+            String addDesc = scanner.nextLine().trim().toLowerCase();
+            String description = "";
+            if(addDesc.equals("yes") || addDesc.equals("y")) 
+	    {
+		    System.out.print("Enter task description: ");
+		    description = scanner.nextLine();
+    	    }
+	    System.out.println("Choose category:");
+	    System.out.println("1. School");
+	    System.out.println("2. Hobby");
+	    System.out.println("3. Work");
+	    System.out.println("4. Self-Care");
+	    System.out.print("Enter number: ");
+	    String category = switch (scanner.nextLine()) 
+	    {
+		    case "1" -> "School";
+		    case "2" -> "Hobby";
+		    case "3" -> "Work";
+		    case "4" -> "Self-Care";
+			    default -> "Other";
+    	    };
+	    System.out.print("Enter date (MMDD): ");
+	    String mmdd = scanner.nextLine();
+	    String date = mmdd.substring(0, 2) + "-" + mmdd.substring(2) + "-2025";
+	    System.out.print("Enter time (HH:MM): ");
+	    String time = scanner.nextLine();
+	    System.out.println("Choose day of week:");
+    	    String[] days = {"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"};
+    	    for(int i = 0; i < days.length; i++) 
+	    {
+		    System.out.println((i + 1) + ". " + days[i]);
+    	    }
+	    System.out.print("Enter number: ");
+	    int dayIndex = Integer.parseInt(scanner.nextLine()) - 1;
+	    DayOfWeek day = DayOfWeek.valueOf(days[dayIndex]);
+	    
+	    System.out.print("Enter priority (1 = high → 5 = low): ");
+	    int priority = Integer.parseInt(scanner.nextLine());
+	    
+	    System.out.println("Choose mood:");
+	    Mood[] moods = Mood.values();
+	    for(int i = 0; i < moods.length; i++) 
+	    {
+		    System.out.println((i + 1) + ". " + moods[i]);
+	    }
+	    System.out.print("Enter number: ");
+	    int moodIndex = Integer.parseInt(scanner.nextLine()) - 1;
+	    Mood mood = moods[moodIndex];
 
-        System.out.print("Enter priority (1 = high → 5 = low): ");
-        int priority = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Enter mood (e.g., FOCUSED, TIRED, EXCITED): ");
-        Mood mood = Mood.valueOf(scanner.nextLine().toUpperCase());
-
-    	Task newTask = new Task(description, category, date, time, day, priority, mood);
-	taskManager.addTask(newTask);
-	TaskDataManager.saveTasks(taskManager.getTasks());  // 💾 autosave after adding
-	System.out.println("✅ Task added and saved!");
-
+	    Task newTask = new Task(title, description, category, date, time, day, priority, mood);
+	    taskManager.addTask(newTask);
+	    TaskDataManager.saveTasks(taskManager.getTasks());
+	    System.out.println("✅ Task added and saved!");
     }
 
     private static void addJournalEntry(Scanner scanner) 
@@ -118,7 +151,8 @@ public class Prysm
         System.out.println("📆 Calendar View:");
         System.out.println("1. View by Priority");
         System.out.println("2. View by Mood");
-        System.out.print("Choose an option: ");
+        System.out.println("3. View by Day of Week");
+	System.out.print("Choose an option: ");
         String choice = scanner.nextLine();
 
         ArrayList<Task> allTasks = taskManager.getTasks();
@@ -126,6 +160,7 @@ public class Prysm
         switch (choice) {
             case "1" -> calendarView.displayByPriority(allTasks);
             case "2" -> calendarView.displayByMood(allTasks);
+	    case "3" -> calendarView.displayByDay(allTasks);
             default -> System.out.println("⚠️ Invalid calendar view choice.");
         }
     }
