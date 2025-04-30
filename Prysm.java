@@ -116,19 +116,28 @@ public class Prysm
 	    TaskDataManager.saveTasks(taskManager.getTasks());
 	    System.out.println("✅ Task added and saved!");
     }
-
     private static void addJournalEntry(Scanner scanner) 
     {
-        System.out.print("Enter date (MM-DD-YYYY): ");
-        String date = scanner.nextLine();
+    	System.out.print("Enter date (MMDD): ");
+    	String mmdd = scanner.nextLine();
+    	String date = mmdd.substring(0, 2) + "-" + mmdd.substring(2) + "-2025";
 
-        System.out.print("Enter mood (e.g., REFLECTIVE, OVERWHELMED): ");
-        Mood mood = Mood.valueOf(scanner.nextLine().toUpperCase());
+    	Mood[] moods = Mood.values();
+    	System.out.println("Choose mood:");
+    	for(int i = 0; i < moods.length; i++) 
+	{
+        	System.out.println((i + 1) + ". " + moods[i]);
+    	}
+    	System.out.print("Enter number: ");
+    	int moodIndex = Integer.parseInt(scanner.nextLine()) - 1;
+    	Mood mood = moods[moodIndex];
 
-        System.out.print("Write your journal note: ");
-        String note = scanner.nextLine();
+    	System.out.print("Write your journal note: ");
+    	String note = scanner.nextLine();
 
-        journalManager.writeEntry(date, mood, note);
+    	journalManager.writeEntry(date, mood, note);
+    	JournalDataManager.writeToFile("journals.json", journalManager.getAllEntries());
+    	System.out.println("📓 Journal entry saved!");
     }
 
     private static void viewAllTasks() 

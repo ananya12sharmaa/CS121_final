@@ -120,18 +120,6 @@ public class TaskManager
 	    }
     }
     
-    public void deleteTask(int index) 
-    {
-	    if(index >= 0 && index < tasks.size()) 
-	    {
-		    tasks.remove(index);
-		    System.out.println("✅ Task deleted successfully.");
-	    }
-	    else 
-	    {
-		    System.out.println("❌ Invalid task number.");
-    	    }
-    }
 
 
     public ArrayList<Task> getTasks() 

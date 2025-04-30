@@ -60,57 +60,50 @@ public class CalendarView
     		// fill in task descriptions per day
     		for(Task task : tasks)
 	       	{
-        		String day = task.getDayOfWeek().toString();
-        		System.out.println("DEBUG: Task '" + task.getTitle() + "' is scheduled for " + day);
-			for (int i = 0; i < days.length; i++) 
+			DayOfWeek dow = task.getDayOfWeek();
+        		int index = dow.ordinal(); // 0 = MONDAY, 6 = SUNDAY
+        		String title = task.getTitle();
+
+        		if (title.length() > 12) 
 			{
-            			if (days[i].equals(day)) 
-				{
-                		dayTasks.get(i).add(task.getDescription());
-            			}
+           			 title = title.substring(0, 10) + "…";
         		}
+			dayTasks.get(index).add(title);
     		}
 
-    		//to print our  header
+    		int maxRows = 0;
+    		for(ArrayList<String> col : dayTasks) 
+		{
+        		if (col.size() > maxRows) 
+			{
+            			maxRows = col.size();
+        		}
+    		}	
+
     		System.out.println("\n=================== WEEKLY TASK CALENDAR ===================");
-    		for(String day : days)
-	       	{
-        		System.out.print("| " + String.format("%-10s", day));
-    		}
-    		System.out.println("|");
-
-    		//to print a simple separator
-    		for(int i = 0; i < 7; i++) 
+    		System.out.print("| ");
+    		for(String day : days) 
 		{
-        		System.out.print("+------------");
+        		System.out.printf("%-10s | ", day.substring(0, 3)); // MON, TUE, ...
     		}
-    		System.out.println("+");
+    		System.out.println();
+    		System.out.println("+------------+------------+------------+------------+------------+------------+------------+");
 
-    		//print up to 4 tasks per day in rows
-    		for(int row = 0; row < 4; row++) 
+    		for(int row = 0; row < maxRows; row++) 
 		{
-			for(int col = 0; col < 7; col++) 
+        		System.out.print("| ");
+        		for(int col = 0; col < 7; col++) 
 			{
-				ArrayList<String> list = dayTasks.get(col);
-            			if(row < list.size()) 
-				{
-                			System.out.print("| " + String.format("%-10s", list.get(row)));
-            			}
-			       	else 
-				{
-               				 System.out.print("| " + " ".repeat(10));
-            			}
+            			ArrayList<String> column = dayTasks.get(col);
+            			String cell = (row < column.size()) ? column.get(row) : "";
+            			System.out.printf("%-10s | ", cell);
         		}
-        		System.out.println("|");
+        		System.out.println();
     		}
 
-    		// final bottom border
-    		for(int i = 0; i < 7; i++) 
-		{
-        		System.out.print("+------------");
-    		}
-    		System.out.println("+\n");
+    		System.out.println("+------------+------------+------------+------------+------------+------------+------------+\n");
 	}
+
 	
 }
 
