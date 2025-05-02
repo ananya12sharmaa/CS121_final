@@ -1,7 +1,7 @@
 # CS121_final
 # PRYSM 
 ## UML
-![image](prysm_uml.png)
+![Image](https://github.com/user-attachments/assets/970ea202-95b5-4dba-9dde-a42f778787fd)
 command for terminal to execute:
 ```bash run``` 
 ## Mood-Based Schedule Maker with Journaling Reflection
