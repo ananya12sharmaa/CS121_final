@@ -1,5 +1,7 @@
 # CS121_final
 # PRYSM 
+command for terminal to execute:
+```bash run``` 
 ## Mood-Based Schedule Maker with Journaling Reflection
 ### Why I Wanted to Do This Project:
 
