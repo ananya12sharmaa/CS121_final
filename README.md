@@ -15,9 +15,11 @@ This project is intended to provide a more personalized approach to task managem
 
 ### Import libraries like Scanner for user input and Gson for JSON data handling.
 Beginning Class:
+
 Starting with the Prysm class, which serves as the entry point for the application.
+
 Beginning Main Method for Menu Display:
-Creating an object of Scanner, useing 3 switch cases for giving choices for exit, task manager, and journal manager.
+Creating an object of Scanner, using 3 switch cases for giving choices for exit, task manager, and journal manager.
 Using break to avoid fall-through.
 Closing the Scanner object after use.
 Beginning TaskManager with Scanner as Parameter:
